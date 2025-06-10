@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sala_Reuniao_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+55a31a1ad84ca7162200efb25465757682d6465a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3eff4d25fd4df2f297a07bfe74b05a81ee32bd5f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sala_Reuniao_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sala_Reuniao_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
