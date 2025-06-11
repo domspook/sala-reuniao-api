@@ -1,6 +1,6 @@
 ﻿namespace Sala_Reuniao_API.DTOs.Reservas
 {
-    public class ReservaResponseDTO
+    public class ReservaReadDTO
     {
     }
 }

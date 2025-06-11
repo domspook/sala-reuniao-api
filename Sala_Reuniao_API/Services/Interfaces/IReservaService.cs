@@ -1,6 +1,6 @@
 ﻿namespace Sala_Reuniao_API.Services.Interfaces
 {
-    public interface IReservasService
+    public interface IReservaService
     {
     }
 }

@@ -39,8 +39,8 @@ namespace Sala_Reuniao_API.Controllers
                 return BadRequest();
             }
 
-            var created = await _usuarioService.CreateAsync(usuarioCreateDTO);
-            return CreatedAtAction(nameof(GetById), new { id = created.UsuarioId }, created);
+            var usuario = await _usuarioService.CreateAsync(usuarioCreateDTO);
+            return CreatedAtAction(nameof(GetById), new { id = usuario.UsuarioId }, usuario);
         }
 
         [HttpPut]
@@ -51,9 +51,9 @@ namespace Sala_Reuniao_API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var update = await _usuarioService.UpdateAsync(id, usuarioUpdateDTO);
+            var updated = await _usuarioService.UpdateAsync(id, usuarioUpdateDTO);
 
-            if (!update)
+            if (!updated)
             {
                 return NotFound();
             }
@@ -64,8 +64,8 @@ namespace Sala_Reuniao_API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete (int id)
         {
-            var delete = await _usuarioService.DeleteAsync(id);
-            if (!delete)
+            var deleted = await _usuarioService.DeleteAsync(id);
+            if (!deleted)
             {
                 return NotFound();
             }

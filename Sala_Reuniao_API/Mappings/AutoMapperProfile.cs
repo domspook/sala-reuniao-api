@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Sala_Reuniao_API.DTOs.Salas;
 using Sala_Reuniao_API.DTOs.Usuarios;
 using Sala_Reuniao_API.Models;
 
@@ -19,6 +20,15 @@ namespace Sala_Reuniao_API.Mappings
 
             //Usario -> UsuarioUpdateDTO (caso precise retornar info em updates)
             CreateMap<Usuario, UsuarioUpdateDTO>();
+
+            //Sala -> SalaReadDTO
+            CreateMap<Sala, SalaReadDTO>();
+
+            //SalaCreateDTO -> Sala
+            CreateMap<SalaCreateDTO, Sala>();
+
+            //SalaUpdateDTO -> Sala
+            CreateMap<SalaUpdateDTO, Sala>();
         }
     }
 }

@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Sala_Reuniao_API.Context;
 using Sala_Reuniao_API.Mappings;
+using Sala_Reuniao_API.Repositories.Implementations;
+using Sala_Reuniao_API.Repositories.Interfaces;
 using Sala_Reuniao_API.Services.Implementations;
 using Sala_Reuniao_API.Services.Interfaces;
 
@@ -16,6 +18,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<ISalaRepository, SalaRepository>();
+builder.Services.AddScoped<ISalaService, SalaService>();
 
 var app = builder.Build();
 
