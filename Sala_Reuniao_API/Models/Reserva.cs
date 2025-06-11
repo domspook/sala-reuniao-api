@@ -11,7 +11,7 @@ namespace Sala_Reuniao_API.Models
         public int UsuarioId { get; set; }
 
         [ForeignKey("UsuarioId")]
-        public Usuario Usuario { get; set; }
+        public Usuario? Usuario { get; set; }
 
         [Required]
         public int SalaId { get; set; }

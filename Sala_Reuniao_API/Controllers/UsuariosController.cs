@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Sala_Reuniao_API.Context;
-using Sala_Reuniao_API.Models;
+using Sala_Reuniao_API.DTOs.Usuarios;
+using Sala_Reuniao_API.Services.Interfaces;
 
 namespace Sala_Reuniao_API.Controllers
 {
@@ -9,83 +8,68 @@ namespace Sala_Reuniao_API.Controllers
     [Route("api/[controller]")]
     public class UsuariosController : ControllerBase
     {
-        private readonly AppDbContext _context;
+      private readonly IUsuarioService _usuarioService;
 
-        public UsuariosController(AppDbContext context)
+        public UsuariosController(IUsuarioService usuarioService)
         {
-            _context = context;
+            _usuarioService = usuarioService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
+        public async Task<ActionResult<IEnumerable<UsuarioReadDTO>>> GetAll()
         {
-            return await _context.Usuarios.ToListAsync();
+            var usuarios = await _usuarioService.GetllAsync();
+            return Ok(usuarios);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Usuario>> GetUsuario(int id)
+        public async Task<ActionResult<UsuarioReadDTO>> GetById(int id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
+            var usuario = await _usuarioService.GetByIdAsync(id);
+            if (usuario == null) { return NotFound(); }
+
             return Ok(usuario);
         }
 
-
         [HttpPost]
-        public async Task<ActionResult<Usuario>> CreateUsuario(Usuario usuario)
+        public async Task<ActionResult<UsuarioReadDTO>> Create([FromBody] UsuarioCreateDTO usuarioCreateDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var created = await _usuarioService.CreateAsync(usuarioCreateDTO);
+            return CreatedAtAction(nameof(GetById), new { id = created.UsuarioId }, created);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update (int id, [FromBody] UsuarioUpdateDTO usuarioUpdateDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Usuarios.Add(usuario);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetUsuario), new { id = usuario.UsuarioId }, usuario);
-        }
+            var update = await _usuarioService.UpdateAsync(id, usuarioUpdateDTO);
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUsuario(int id, Usuario usuario)
-        {
-            if (id != usuario.UsuarioId)
+            if (!update)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            _context.Entry(usuario).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.Usuarios.Any(u => u.UsuarioId == id))
-                {
-                    return NotFound();
-                }
-
-                throw;
-            }
-            
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsuario(int id)
+        public async Task<IActionResult> Delete (int id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null)
+            var delete = await _usuarioService.DeleteAsync(id);
+            if (!delete)
+            {
                 return NotFound();
-
-            _context.Usuarios.Remove(usuario);
-            await _context.SaveChangesAsync();
-
+            }
             return NoContent();
-
         }
     }
 }
