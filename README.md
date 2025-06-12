@@ -19,7 +19,7 @@ API RESTful desenvolvida em .NET 8 para gerenciamento de usuários, salas de reu
 
 ### 👥 Gerenciamento de Usuários
 - Criar, editar e excluir usuários
-- Cada usuário possui: `Nome`, `Email`, `Senha`
+- Cada usuário possui: `Nome`, `Email`, `Senha`, `Cpf`,`Contato`
 
 ### 🏢 Gerenciamento de Salas
 - Criar, editar e excluir salas

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Sala_Reuniao_API.DTOs.Reservas;
 using Sala_Reuniao_API.DTOs.Salas;
 using Sala_Reuniao_API.DTOs.Usuarios;
 using Sala_Reuniao_API.Models;
@@ -29,6 +30,14 @@ namespace Sala_Reuniao_API.Mappings
 
             //SalaUpdateDTO -> Sala
             CreateMap<SalaUpdateDTO, Sala>();
+
+            //ReservaCreateDTO -> Reserva
+            CreateMap<ReservaCreateDTO, Reserva>();
+
+            //Reserva -> ReservaReadDTO
+            CreateMap<Reserva, ReservaReadDTO>()
+                .ForMember(dest => dest.Usuario, opt => opt.MapFrom(src => src.Usuario.Nome))
+                .ForMember(dest => dest.Sala, opt => opt.MapFrom(opt => opt.Sala.Nome));
         }
     }
 }

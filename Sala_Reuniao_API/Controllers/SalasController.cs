@@ -5,7 +5,7 @@ using Sala_Reuniao_API.Services.Interfaces;
 namespace Sala_Reuniao_API.Controllers
 {
     [ApiController]
-    [Route("api/[Controller]")]
+    [Route("api/[controller]")]
     public class SalasController : ControllerBase
     {
         private readonly ISalaService _salaService;
