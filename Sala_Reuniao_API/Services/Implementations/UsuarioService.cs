@@ -59,5 +59,10 @@ namespace Sala_Reuniao_API.Services.Implementations
             await _usuarioRepository.SaveChangesAsync();
             return true;
         }
+
+        public async Task<Usuario?> AuthAsync(string email, string senha)
+        {
+            return await _usuarioRepository.AuthAsync(email, senha);
+        }
     }
 }

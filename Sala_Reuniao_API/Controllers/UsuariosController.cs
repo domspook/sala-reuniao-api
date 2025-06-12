@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Sala_Reuniao_API.DTOs.Usuarios;
 using Sala_Reuniao_API.Services.Interfaces;
 
 namespace Sala_Reuniao_API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsuariosController : ControllerBase

@@ -44,5 +44,11 @@ namespace Sala_Reuniao_API.Repositories.Implementations
         {
             return (await _context.SaveChangesAsync()) > 0;
         }
+
+        public async Task<Usuario?> AuthAsync (string email, string senha)
+        {
+            return await _context.Usuarios.FirstOrDefaultAsync
+                (u => u.Email == email &&  u.Senha == senha);
+        }
     }
 }

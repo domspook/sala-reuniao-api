@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sala_Reuniao_API.DTOs.Reservas;
 using Sala_Reuniao_API.Models;
@@ -6,6 +7,7 @@ using Sala_Reuniao_API.Services.Interfaces;
 
 namespace Sala_Reuniao_API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ReservasController : ControllerBase

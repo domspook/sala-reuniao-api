@@ -10,5 +10,6 @@ namespace Sala_Reuniao_API.Repositories.Interfaces
         void Update(Usuario usuario);
         void Delete (Usuario usuario);
         Task<bool> SaveChangesAsync();
+        Task<Usuario?> AuthAsync(string email, string senha);
     }
 }
